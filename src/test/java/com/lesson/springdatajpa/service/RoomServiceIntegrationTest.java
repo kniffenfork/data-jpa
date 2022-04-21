@@ -14,7 +14,7 @@ import org.springframework.test.context.ContextConfiguration;
 
 @SpringBootTest
 @ContextConfiguration(initializers = {PostgreSQLContainerInitializer.class})
-@AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class RoomServiceIntegrationTest {
     private static final String TEST_ROOM_NUMBER = "test";
     private static final Integer TEST_ROOM_FLOOR = 1;

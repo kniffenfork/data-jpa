@@ -2,14 +2,22 @@ package com.lesson.springdatajpa.service;
 
 import com.lesson.springdatajpa.model.Room;
 import com.lesson.springdatajpa.model.RoomType;
+import com.lesson.springdatajpa.model.User;
 import com.lesson.springdatajpa.repository.RoomRepository;
+import com.lesson.springdatajpa.repository.UserRepository;
 import com.lesson.springdatajpa.service.exception.RequiredFieldMissedException;
+import com.lesson.springdatajpa.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -26,6 +34,9 @@ public class RoomServiceUnitTest {
 
     @MockBean
     private RoomRepository roomRepository;
+
+    @Mock
+    private UserRepository userRepository;
 
     @Test
     void shouldCreateRoom() {
@@ -109,5 +120,19 @@ public class RoomServiceUnitTest {
         );
         Mockito.when(roomRepository.save(room)).thenReturn(room);
         Assertions.assertDoesNotThrow(() -> roomService.create(room));
+    }
+
+    @Test
+    void shouldThrowException() {
+        Mockito.when(userRepository.findAll()).thenReturn(new ArrayList<>(List.of(new User("test", "test", "test", "Ivan", "test", "test"))));
+        UserService userService = new UserServiceImpl(userRepository);
+        Assertions.assertThrows(RuntimeException.class, userService::getAll);
+    }
+
+    @Test
+    void shouldGetAllUsers() {
+        Mockito.when(userRepository.findAll()).thenReturn(new ArrayList<>(List.of(new User("test", "test", "test", "test", "test", "test"))));
+        UserService userService = new UserServiceImpl(userRepository);
+        Assertions.assertDoesNotThrow(userService::getAll);
     }
 }
