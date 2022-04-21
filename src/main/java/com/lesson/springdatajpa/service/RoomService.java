@@ -1,16 +1,15 @@
 package com.lesson.springdatajpa.service;
 
 import com.lesson.springdatajpa.model.Room;
-import com.lesson.springdatajpa.model.RoomType;
 
 import java.util.List;
 
 public interface RoomService {
-    Room createRoom(Room room);
-    Room updateRoom(String id, Room room);
-    void deleteRoom(String id);
-    Room getRoom(String id);
-    List<Room> getRooms(
+    Room create(Room room);
+    Room update(String id, Room room);
+    void delete(String id);
+    Room getBy(String id);
+    List<Room> getAllBy(
             Integer priceFrom,
             Integer priceTo
     );

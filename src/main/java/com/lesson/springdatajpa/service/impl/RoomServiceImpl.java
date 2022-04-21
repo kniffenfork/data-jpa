@@ -20,7 +20,7 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public Room createRoom(Room room) {
+    public Room create(Room room) {
         validate(room);
         Room createdRoom = new Room(
                 UUID.randomUUID().toString(),
@@ -34,24 +34,24 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public Room updateRoom(String id, Room room) {
-        Room oldRoom = getRoom(id);
+    public Room update(String id, Room room) {
+        Room oldRoom = getBy(id);
         Room updatedRoom = updateRoom(oldRoom, room);
         return roomRepository.save(updatedRoom);
     }
 
     @Override
-    public void deleteRoom(String id) {
-        roomRepository.delete(getRoom(id));
+    public void delete(String id) {
+        roomRepository.delete(getBy(id));
     }
 
     @Override
-    public Room getRoom(String id) {
+    public Room getBy(String id) {
         return roomRepository.findById(id).orElseThrow(() -> new RoomNotFoundException(id));
     }
 
     @Override
-    public List<Room> getRooms(Integer priceFrom, Integer priceTo) {
+    public List<Room> getAllBy(Integer priceFrom, Integer priceTo) {
         return roomRepository.findAllByPriceBetween(priceFrom, priceTo);
     }
 
