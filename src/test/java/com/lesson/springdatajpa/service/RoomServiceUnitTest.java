@@ -58,7 +58,6 @@ public class RoomServiceUnitTest {
                 TEST_ROOM_DESCRIPTION,
                 TEST_ROOM_PRICE
         );
-        Mockito.when(roomRepository.save(any(Room.class))).thenReturn(TEST_ROOM);
         Assertions.assertThrows(RequiredFieldMissedException.class, () -> roomService.create(room));
     }
 
@@ -72,7 +71,6 @@ public class RoomServiceUnitTest {
                 TEST_ROOM_DESCRIPTION,
                 TEST_ROOM_PRICE
         );
-        Mockito.when(roomRepository.save(any(Room.class))).thenReturn(TEST_ROOM);
         Assertions.assertThrows(RequiredFieldMissedException.class, () -> roomService.create(room));
     }
 
@@ -86,7 +84,6 @@ public class RoomServiceUnitTest {
                 TEST_ROOM_DESCRIPTION,
                 TEST_ROOM_PRICE
         );
-        Mockito.when(roomRepository.save(any(Room.class))).thenReturn(TEST_ROOM);
         Assertions.assertThrows(RequiredFieldMissedException.class, () -> roomService.create(room));
     }
 
@@ -100,7 +97,6 @@ public class RoomServiceUnitTest {
                 TEST_ROOM_DESCRIPTION,
                 null
         );
-        Mockito.when(roomRepository.save(any(Room.class))).thenReturn(TEST_ROOM);
         Assertions.assertThrows(RequiredFieldMissedException.class, () -> roomService.create(room));
     }
 
@@ -114,7 +110,6 @@ public class RoomServiceUnitTest {
                 null,
                 TEST_ROOM_PRICE
         );
-        Mockito.when(roomRepository.save(room)).thenReturn(room);
         Assertions.assertDoesNotThrow(() -> roomService.create(room));
     }
 }
