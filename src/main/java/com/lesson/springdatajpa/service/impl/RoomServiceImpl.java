@@ -36,7 +36,7 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public Room update(String id, Room room) {
         Room oldRoom = getBy(id);
-        Room updatedRoom = updateRoom(oldRoom, room);
+        Room updatedRoom = getUpdatedRoom(oldRoom, room);
         return roomRepository.save(updatedRoom);
     }
 
@@ -62,7 +62,7 @@ public class RoomServiceImpl implements RoomService {
         if (room.getPrice() == null) throw new RequiredFieldMissedException("price");
     }
 
-    private Room updateRoom(Room oldRoom, Room updateParams) {
+    private Room getUpdatedRoom(Room oldRoom, Room updateParams) {
         String newRoomNumber = updateParams.getRoomNumber();
         RoomType newRoomType = updateParams.getRoomType();
         Integer newFloor = updateParams.getFloor();
