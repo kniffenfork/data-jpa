@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class UserServiceUnitTest {
     @Autowired
-    private RoomService roomService;
+    private UserService userService;
 
     @Test
     void shouldCreateUser() {
