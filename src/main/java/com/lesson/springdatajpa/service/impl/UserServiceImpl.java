@@ -4,6 +4,7 @@ import com.lesson.springdatajpa.model.User;
 import com.lesson.springdatajpa.repository.UserRepository;
 import com.lesson.springdatajpa.service.UserService;
 import com.lesson.springdatajpa.service.exception.RequiredFieldMissedException;
+import com.lesson.springdatajpa.service.exception.user.UserNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -69,6 +70,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUser(String userId) {
-        return userRepository.findById(userId).orElseThrow(RuntimeException::new);
+        return userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
     }
 }

@@ -1,4 +1,4 @@
 package com.lesson.springdatajpa.service.exception.user;
 
-public class UserNotFoundException extends UserException {
+public class UserException extends RuntimeException {
 }
